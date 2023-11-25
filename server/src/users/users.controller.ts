@@ -6,9 +6,14 @@ import {
   HttpCode,
   HttpStatus,
   Post,
+  UseGuards,
+  Request,
+  Get,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { LocalAuthGuard } from 'src/auth/local.auth.guard';
+import { AuthenticatedGuard } from 'src/auth/authenticated.guard';
 
 @Controller('users')
 export class UsersController {
@@ -20,6 +25,23 @@ export class UsersController {
   createUser(@Body() CreateUserDto: CreateUserDto) {
     return this.userService.create(CreateUserDto);
   }
-}
 
-//38:19
+  @Post('/login')
+  @UseGuards(LocalAuthGuard)
+  @HttpCode(HttpStatus.OK)
+  login(@Request() req) {
+    return { user: req.user, msg: 'Logged in' };
+  }
+
+  @Get('/login-check')
+  @UseGuards(AuthenticatedGuard)
+  loginCheck(@Request() req) {
+    return req.user;
+  }
+
+  @Get('/logout')
+  logout(@Request() req) {
+    req.session.destroy();
+    return { msg: 'session has ended' };
+  }
+}
