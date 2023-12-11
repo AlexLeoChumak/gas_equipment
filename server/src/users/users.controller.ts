@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Body,
   Controller,
@@ -31,8 +30,8 @@ export class UsersController {
   @Post('/signup')
   @HttpCode(HttpStatus.CREATED)
   @Header('Content-type', 'application/json')
-  createUser(@Body() CreateUserDto: CreateUserDto) {
-    return this.userService.create(CreateUserDto);
+  createUser(@Body() createUserDto: CreateUserDto) {
+    return this.userService.create(createUserDto);
   }
 
   @ApiBody({ type: LoginUserRequest })
@@ -58,5 +57,3 @@ export class UsersController {
     return { msg: 'session has ended' };
   }
 }
-
-// 1.06.48
