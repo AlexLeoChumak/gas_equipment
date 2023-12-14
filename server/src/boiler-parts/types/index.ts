@@ -11,7 +11,7 @@ class BoilerParts {
   @ApiProperty({ example: faker.lorem.sentence(2) })
   parts_manufacturer: string;
 
-  @ApiProperty({ example: 12345 })
+  @ApiProperty({ example: 1234 })
   price: string;
 
   @ApiProperty({ example: faker.internet.password() })
