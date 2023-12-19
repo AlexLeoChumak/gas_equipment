@@ -6,7 +6,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { databaseConfig } from 'src/config/configuration';
 import { SequelizeConfigService } from 'src/config/sequelizeConfig.service';
 import { User } from 'src/users/users.model';
-import { AuthModule } from 'src/auth/auth.module';
 import { BoilerPartsModule } from 'src/boiler-parts/boiler-parts.module';
 import { BoilerPartsService } from 'src/boiler-parts/boiler-parts.service';
 import { UsersService } from 'src/users/users.service';
@@ -20,7 +19,7 @@ const mockedUser = {
   password: 'john123',
 };
 
-describe('Boiler Parts Controller', () => {
+describe('Shopping Cart Service', () => {
   let app: INestApplication;
   let boilerPartsService: BoilerPartsService;
   let usersService: UsersService;
@@ -36,7 +35,6 @@ describe('Boiler Parts Controller', () => {
         ConfigModule.forRoot({
           load: [databaseConfig],
         }),
-        AuthModule,
         BoilerPartsModule,
         ShoppingCartModule,
       ],
