@@ -6,10 +6,14 @@ import { IInputs } from '@/types/auth'
 import { showAuthError } from '@/utils/errors'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useUnit } from 'effector-react'
+import { $mode } from '@/context/mode'
 import styles from '@/styles/auth/index.module.scss'
 import spinnerStyles from '@/styles/spinner/index.module.scss'
 
 const SignUpForm = ({ switchForm }: { switchForm: () => void }) => {
+  const mode = useUnit($mode)
+  const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
   const [spinner, setSpinner] = useState(false)
 
   const {
@@ -46,14 +50,14 @@ const SignUpForm = ({ switchForm }: { switchForm: () => void }) => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <h2 className={`${styles.form__title} ${styles.title}`}>
+      <h2 className={`${styles.form__title} ${styles.title}  ${darkModeClass}`}>
         Создать аккаунт
       </h2>
       <NameInput register={register} errors={errors} />
       <EmailInput register={register} errors={errors} />
       <PasswordInput register={register} errors={errors} />
       <button
-        className={`${styles.form__button} ${styles.button} ${styles.submit}`}
+        className={`${styles.form__button} ${styles.button} ${styles.submit} ${darkModeClass}`}
       >
         {spinner ? <div className={spinnerStyles.spinner} /> : 'SIGN UP'}
       </button>
