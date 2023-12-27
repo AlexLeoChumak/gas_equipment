@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { FieldErrors, UseFormRegister } from 'react-hook-form'
 
 export interface IInputs {

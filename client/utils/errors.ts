@@ -4,11 +4,11 @@ import { toast } from 'react-toastify'
 
 export const showAuthError = (error: unknown) => {
   const axiosError = error as AxiosError
-  console.log('axiosError', axiosError)
+  console.log('axiosError777', axiosError)
 
   if (axiosError.response) {
     if (axiosError.response.status === HTTPStatus.UNAUTHORIZED) {
-      toast.error('Неверное имя пользователя или пароль')
+      toast.error('Неверное имя пользователя и/или пароль')
       return
     }
   }
